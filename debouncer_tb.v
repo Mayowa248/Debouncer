@@ -12,6 +12,7 @@ debouncer DUT (
 
 initial clk = 0;
 always #5 clk = ~clk;
+integer i;
 
 initial begin
 
@@ -26,10 +27,20 @@ initial begin
     #50;
     rst = 1;
 
-    #50;
+    for (i = 0; i < 50; i = i + 1) begin
+        btn_raw = ~btn_raw;
+        #20;
+    end
+
     btn_raw = 0;
 
     #1500;
+
+    for (i = 0; i < 50; i = i + 1) begin
+        btn_raw = ~btn_raw;
+        #20;
+    end
+
     btn_raw = 1;
 
     #1500;
